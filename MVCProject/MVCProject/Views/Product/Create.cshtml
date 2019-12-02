@@ -1,0 +1,183 @@
+﻿@model MVCProject.ViewModel.ProductViewModel
+@{
+    ViewBag.Title = "New Product";
+}
+<link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<style>
+    img {
+        height: 150px;
+        width: 150px;
+        margin-bottom: 5px;
+    }
+
+    #showimage input[type='checkbox'] {
+        position: relative;
+        left: -145px;
+        top: -65px;
+    }
+
+    .closeIcon {
+        color: initial;
+        position: relative;
+        left: -33px;
+        top: -65px;
+        cursor: pointer;
+    }
+</style>
+<div class="container">
+    <h1 style="text-align:center">Add new product</h1>
+    <hr />
+    @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Name, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Brand, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Brand, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.CategoryID, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.CategoryID, ViewBag.Data as SelectList, "Category", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Details, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Details, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Details, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Price, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.StockQuantity, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.StockQuantity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.StockQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 offset-2">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(x => x.IsFavorite, new { @class = "form-check-input" })
+                        @Html.LabelFor(x => x.IsFavorite, new { @class = "form-check-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 offset-2">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input" })
+                        @Html.LabelFor(x => x.IsActive, new { @class = "form-check-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.ImagePath, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="custom-file">
+                        @Html.TextBoxFor(x => x.ImagePath, "", new { type = "file", multiple = "multiple", @class = "form-control custom-file-input" })
+                        @Html.Label("Choosefile", "Choose file...", new { @class = "custom-file-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="showimage" class="offset-2">
+
+        </div><br />
+        <div class="form-group">
+            <div class="row">
+                <div class="offset-2 col-md-10">
+                    <input type="submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        @section Scripts{
+            <script>
+                $(document).ready(function () {
+                    $(".custom-file-input").on("change", function () {
+                        var fileLabel = $(this).next(".custom-file-label");
+                        var files = $(this)[0].files;
+                        if (files.length > 1) {
+                            $(fileLabel).html(files.length + " file has been selected");
+                        }
+                        else {
+                            $(fileLabel).html(files[0].name);
+                        }
+                        var previewimages = $("#showimage");
+                        previewimages.html("");
+                        var num = 1;
+                        $($(this)[0].files).each(function () {
+                            var file = $(this);
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = $("<img id='pic_" + num + "'/><input name='IsDefaultCheckBox' id='chk_"+num+"'"+
+                                    " value = '" + num + "' type = 'checkbox'/><i class='fa closeIcon fa-times' id='i"+num+"' aria-hidden='true'></i>");
+                                num++;
+                                img.attr("src", e.target.result);
+                                previewimages.append(img);
+                            }
+                            reader.readAsDataURL(file[0]);
+                        })
+                    })
+                    $("#showimage").on('click', "i", function () {
+                        var iconID = $(this).attr("id");
+                        var substrId = iconID.substring(1, iconID.length);
+                        var src = $("#pic_" + substrId).attr("src");
+                        //console.log(src);
+                        $("#pic_" + substrId).remove();
+                        $(this).remove();
+                        $("#chk_" + substrId).remove();
+
+                        $($(".custom-file-input")[0].files).each(function () {
+                            var file = $(this);
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                console.log(e.target.result);
+                            }
+                            reader.readAsDataURL(file[0]);
+                        })
+                    })
+                    $("#showimage").on('change', "input", function () {
+                        $(this).siblings("input:checkbox").prop("checked", false);
+                    })
+                })
+            </script>
+        }
+    }
+</div>
+
+
+

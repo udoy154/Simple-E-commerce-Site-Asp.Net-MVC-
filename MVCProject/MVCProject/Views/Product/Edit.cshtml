@@ -1,0 +1,137 @@
+﻿@model MVCProject.ViewModel.ProductEditViewModel
+@{
+    ViewBag.Title = "New Product";
+}
+<div class="container">
+    <h1 style="text-align:center">Edit product @Model.Name</h1>
+    <hr />
+    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.TextBoxFor(x => x.ExistenceImagePath, new { @hidden = "@hidden" })
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Name, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Brand, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Brand, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.CategoryID, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.CategoryID, ViewBag.Data as SelectList, "Category", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Details, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Details, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Details, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.Price, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.StockQuantity, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.StockQuantity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.StockQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 offset-2">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(x => x.IsFavorite, new { @class = "form-check-input" })
+                        @Html.LabelFor(x => x.IsFavorite, new { @class = "form-check-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 offset-2">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input" })
+                        @Html.LabelFor(x => x.IsActive, new { @class = "form-check-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                @Html.LabelFor(x => x.ImagePath, new { @class = "col-form-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="custom-file">
+                        @Html.TextBoxFor(x => x.ImagePath, "", new { type = "file", @class = "form-control custom-file-input" })
+                        @Html.Label("Choosefile", "Choose file...", new { @class = "custom-file-label" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10 offset-2">
+                    <div class="img-thumbnail">
+                        @if (Model.StImagePath != null)
+                        {
+                            foreach (var path in Model.StImagePath)
+                            {
+                                <img src="~/ProductImages/@path" asp-append-version="true" class="thambnail-img" />
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="offset-2 col-md-10">
+                    <input type="submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        @section Scripts{
+            <script>
+                $(document).ready(function () {
+                    $(".custom-file-input").on("change", function () {
+                        var fileLabel = $(this).next(".custom-file-label");
+                        var files = $(this)[0].files;
+                        if (files.length > 1) {
+                            $(fileLabel).html(files.length + " file has been selected");
+                        }
+                        else {
+                            $(fileLabel).html(files[0].name);
+                        }
+                    })
+                })
+            </script>
+        }
+    }
+</div>
+
+

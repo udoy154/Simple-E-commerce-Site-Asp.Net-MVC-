@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MVCProject.Models.Category>
+@{
+    ViewBag.Title = "All Category";
+}
+<div class="container">
+    <h1 class="text-center">Category Table</h1><hr style="border-color: #F25D07" />
+    @Html.ActionLink("Create New Category", "Create", "Category", new { @class = "btn btn-primary" })
+    <br />
+    <br />
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Display Order</th>
+                <th>IsActive</th>
+                <th>Parent CategoryID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>@category.DisplayOrder</td>
+                    <td>@category.IsActive</td>
+                    <td>@category.ParentCatID</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = category.ID }, null) |
+                        @Html.ActionLink("Details", "Details", new { id = category.ID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = category.ID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

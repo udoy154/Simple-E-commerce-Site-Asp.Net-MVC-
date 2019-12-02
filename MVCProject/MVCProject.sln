@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCProject", "MVCProject\MVCProject.csproj", "{6CA8D91B-A901-461E-8AFD-52EC6DAA6FBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CristalReportLib", "CristalReportLib\CristalReportLib.csproj", "{AB754704-1177-41A1-AD01-11EF76ED696D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CA8D91B-A901-461E-8AFD-52EC6DAA6FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA8D91B-A901-461E-8AFD-52EC6DAA6FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA8D91B-A901-461E-8AFD-52EC6DAA6FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA8D91B-A901-461E-8AFD-52EC6DAA6FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB754704-1177-41A1-AD01-11EF76ED696D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB754704-1177-41A1-AD01-11EF76ED696D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB754704-1177-41A1-AD01-11EF76ED696D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB754704-1177-41A1-AD01-11EF76ED696D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C34E72CA-0EF5-411E-85DB-321DA483364E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MVCProject.Models.ProductMG>
+@{
+    ViewBag.Title = "All Category";
+}
+<div class="container">
+    <h1 class="text-center">Product Images Table</h1><hr style="border-color: #F25D07" />
+    @Html.ActionLink("Add New Product", "Create", "Product", null, new { @class = "btn btn-primary" })
+    <br />
+    <br />
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>ImgPath</th>
+                <th>Display Order</th>
+                <th>Thumbnail Path</th>
+                <th>Is Default Img</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var productMG in Model)
+            {
+                <tr>
+                    <td style="max-width:318px; text-overflow:ellipsis; overflow:hidden;white-space:nowrap;">@productMG.ImgPath</td>
+                    <td>@productMG.DisplayOrder</td>
+                    <td>@productMG.ThumbnailPath</td>
+                    <td>@productMG.IsDefaultImg</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit",new { id = productMG.ProductID }, null) |
+                        @Html.ActionLink("Delete", "Delete", new { id = productMG.ID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

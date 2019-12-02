@@ -1,0 +1,55 @@
+﻿@model MVCProject.ViewModel.CategoryViewModel
+@{
+    ViewBag.Title = "Edit Category";
+}
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 style="text-align:center">Edit Category</h1>
+                <hr />
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(x => x.Name, new { @class = "col-form-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(x => x.ParentCatID, new { @class = "col-form-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.ParentCatID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.ParentCatID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @Html.LabelFor(x => x.DisplayOrder, new { @class = "col-form-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(x => x.DisplayOrder, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.DisplayOrder, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row offset-2">
+                        <div class="form-check">
+                            @Html.CheckBoxFor(x => x.IsActive, new { @class = "form-check-input" })
+                            @Html.LabelFor(x => x.IsActive, new { @class = "form-check-label" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row offset-2">
+                        <input type="submit" class="btn btn-primary" value="Update" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
