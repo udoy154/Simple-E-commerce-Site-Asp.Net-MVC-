@@ -1,0 +1,61 @@
+﻿@model CRUDProject.Models.ViewModel.VMCategoryInfo
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4>Category</h4>
+    <hr />
+    <div class="form-group">
+        <div>
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            @Html.LabelFor(model => model.ParentCatID, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div>
+            @Html.EditorFor(model => model.ParentCatID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ParentCatID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div>
+            @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div>
+            @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+<p>
+    @Html.ActionLink("Back To List", "Index")
+</p>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

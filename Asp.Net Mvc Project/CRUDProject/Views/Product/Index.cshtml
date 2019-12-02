@@ -1,0 +1,101 @@
+﻿@model IEnumerable<CRUDProject.Models.ViewModel.VMProductInfo>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFavorite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            <label>Category</label>
+        </th>
+        <th>
+            <label>Image</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsFavorite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @{
+                IEnumerable<CRUDProject.Models.ViewModel.VMCategoryInfo> catList = ViewBag.category;
+                CRUDProject.Models.ViewModel.VMCategoryInfo cat = (from d in catList where d.ID == item.CategoryID select d).FirstOrDefault();
+                <label>@cat.Name</label>
+            }
+        </td>
+        <td>
+            @{
+                IEnumerable<CRUDProject.Models.ViewModel.VMProductMG> imgList = ViewBag.Img;
+                CRUDProject.Models.ViewModel.VMProductMG Image = (from d in imgList where d.ProductID == item.ID select d).FirstOrDefault();
+                var img = Path.GetFileName(Image.ImgPath); 
+                if (img == "ProductsImg")
+                {
+                    <P>No Image</P>
+                }
+                else
+                {
+                    <img src="~/Content/Images/ProductsThum/@img" alt="Sample Image" width="90" height="50" />
+                }
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+    }
+
+</table>
+
+

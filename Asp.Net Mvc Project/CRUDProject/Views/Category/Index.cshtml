@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CRUDProject.Models.ViewModel.VMCategoryInfo>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParentCatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.ParentCatID)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.DisplayOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID}) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Back To List", "Index")
+</p>
